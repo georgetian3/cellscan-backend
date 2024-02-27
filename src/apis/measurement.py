@@ -17,4 +17,5 @@ class MeasurementApi(BaseRouter):
 
         @self.post('/measurements', **create_documentation(JDR204))
         async def upload_measurements(measurements: List[MeasurementUpload], request: Request):
+            print(request.headers.raw)
             await self.services.measurement.upload_measurements(measurements, request.client.host)
