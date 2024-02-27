@@ -1,36 +1,45 @@
 version: "3"
 services:
+
   db:
     container_name: cellscan_db
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${CELLSCAN_DB_PASS}
     healthcheck:
-      test: mysqladmin ping -u${DB_USER} -p${DB_PASS}
+      test: mysqladmin ping -u${CELLSCAN_DB_USER} -p${CELLSCAN_DB_PASS}
+
   backup:
     container_name: cellscan_backup
     image: databack/mysql-backup:latest
     user: root
     volumes:
-      - ${HOST_BACKUP_DIR}:/backups
+      - ${CELLSCAN_BACKUP_DIR}:/backups
     environment:
       DB_SERVER: db
       DB_DUMP_FREQ: 1440
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
+      DB_USER: ${CELLSCAN_DB_USER}
+      DB_PASS: ${CELLSCAN_DB_PASS}
       DB_DUMP_TARGET: /backups
       DB_DUMP_SAFECHARS: true
     depends_on:
       db:
         condition: service_healthy
+
+  caddy:
+    container_name: caddy
+    image: caddy:latest
+    ports:
+      - 80:80
+      - 443:443
+      
   backend:
     container_name: cellscan_backend
     build: .
-    ports:
-      - 8000:80
     environment:
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
+      DB_USER: ${CELLSCAN_DB_USER}
+      DB_PASS: ${CELLSCAN_DB_PASS}
+      DB_PORT: ${CELLSCAN_DB_PORT}
     depends_on:
       db:
         condition: service_healthy
