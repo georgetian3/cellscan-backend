@@ -21,7 +21,7 @@ services:
       DB_USER: ${CELLSCAN_DB_USER}
       DB_PASS: ${CELLSCAN_DB_PASS}
       DB_DUMP_TARGET: /backups
-      DB_DUMP_SAFECHARS: true
+      DB_DUMP_SAFECHARS: 1
     depends_on:
       db:
         condition: service_healthy
