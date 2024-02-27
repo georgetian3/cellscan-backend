@@ -1,0 +1,8 @@
+aiomysql
+aiosqlite
+cryptography
+fastapi
+nest_asyncio
+pytz
+sqlmodel
+uvicorn
