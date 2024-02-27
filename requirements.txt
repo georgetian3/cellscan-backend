@@ -2,6 +2,7 @@ aiomysql
 aiosqlite
 cryptography
 fastapi
+gunicorn
 nest_asyncio
 pytz
 sqlmodel
