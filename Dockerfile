@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD uvicorn main:api --host 0.0.0.0 --port 80
+CMD uvicorn --app-dir=src main:api --host 0.0.0.0 --port 8000

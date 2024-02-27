@@ -1,0 +1,3 @@
+cellscan.georgetian.com {
+    reverse_proxy backend:8000
+}
