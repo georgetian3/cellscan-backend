@@ -2,6 +2,7 @@ from typing import List
 from models.measurement import MeasurementUpload, Measurement
 from apis.base import BaseRouter
 from apis.documented_response import create_documentation, JDR, JDR204
+from fastapi import Request
 
 class MeasurementApi(BaseRouter):
     """ Location API """
@@ -15,5 +16,5 @@ class MeasurementApi(BaseRouter):
             return await self.services.measurement.get_measurements()
 
         @self.post('/measurements', **create_documentation(JDR204))
-        async def upload_measurements(measurements: List[MeasurementUpload]):
-            await self.services.measurement.upload_measurements(measurements)
+        async def upload_measurements(measurements: List[MeasurementUpload], request: Request):
+            await self.services.measurement.upload_measurements(measurements, request.client.host)

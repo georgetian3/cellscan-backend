@@ -14,7 +14,8 @@ class MeasurementService(BaseService):
         async with self.database.async_session() as session:
             return await session.scalars(sqlalchemy.select(Measurement))
 
-    async def upload_measurements(self, measurements: List[MeasurementUpload]) -> None:
+    async def upload_measurements(self, measurements: List[MeasurementUpload], ip: str) -> None:
+        print('ip', ip)
         time_uploaded = datetime.now().astimezone(UTC)
         async with self.database.async_session() as session:
             for measurement in measurements:
