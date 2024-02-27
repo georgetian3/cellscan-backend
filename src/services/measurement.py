@@ -15,7 +15,6 @@ class MeasurementService(BaseService):
             return await session.scalars(sqlalchemy.select(Measurement))
 
     async def upload_measurements(self, measurements: List[MeasurementUpload], ip: str) -> None:
-        print('ip', ip)
         time_uploaded = datetime.now().astimezone(UTC)
         async with self.database.async_session() as session:
             for measurement in measurements:
@@ -23,5 +22,5 @@ class MeasurementService(BaseService):
                 if measurement.operating_system not in ALL_OPERATING_SYSTEMS:
                     continue
                 # insert into db
-                session.add(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded))
+                session.add(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded, ip=ip))
             await session.commit()

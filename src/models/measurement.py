@@ -19,3 +19,4 @@ class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
     id: int = Field(primary_key=True)
     time_uploaded: datetime
+    ip: str
