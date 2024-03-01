@@ -13,7 +13,7 @@ class MeasurementUpload(SQLModel):
     cell_id: int
     signal_strength: float
 
-    misc: str = Column(Text(1600000000)),
+    misc: str = Column(Text(4294000000)),
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
