@@ -21,7 +21,7 @@ def compile_datetime_mysql(type_, compiler, **kw):
 
 class Database:
     def __init__(self, config: ConfigDatabase):
-        self.engine = create_async_engine(URL.create(**config._asdict()))
+        self.engine = create_async_engine(URL.create(**config._asdict()), pool_pre_ping=True)
         # self.engine = create_async_engine('sqlite+aiosqlite:///test.db')
         self.async_session_maker: AsyncSession = sessionmaker(self.engine, class_=AsyncSession)
         self.create_tables()
