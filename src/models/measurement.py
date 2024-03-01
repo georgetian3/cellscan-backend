@@ -13,6 +13,7 @@ class MeasurementUpload(SQLModel):
 
     cell_id: int
     signal_strength: float
+    mcc: int
 
     misc: str = Column(LONGTEXT),
 
