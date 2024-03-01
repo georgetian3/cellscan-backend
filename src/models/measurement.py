@@ -9,7 +9,6 @@ class MeasurementUpload(SQLModel):
     latitude: float
     altitude: float
 
-    operating_system: str
     cell_id: int
     signal_strength: float
 

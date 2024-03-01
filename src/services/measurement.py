@@ -6,7 +6,6 @@ from pytz import UTC
 import sqlalchemy
 
 # TODO: remove `string`
-ALL_OPERATING_SYSTEMS = frozenset(['Android', 'iOS', 'string'])
 
 class MeasurementService(BaseService):
 
@@ -16,12 +15,10 @@ class MeasurementService(BaseService):
 
     async def upload_measurements(self, measurements: List[MeasurementUpload], ip: str) -> None:
         time_uploaded = datetime.now().astimezone(UTC)
-        print('ip', ip)
         async with self.database.async_session() as session:
             for measurement in measurements:
                 # sanitize
-                if measurement.operating_system not in ALL_OPERATING_SYSTEMS:
-                    continue
+                # TODO
                 # insert into db
                 session.add(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded, ip=ip))
             await session.commit()
