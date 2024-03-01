@@ -12,7 +12,7 @@ class MeasurementUpload(SQLModel):
     cell_id: int
     signal_strength: float
     mcc: int
-
+    # large number required to create LONGTEXT in MySQL
     misc: str = Field(sa_column=Column(UnicodeText(32000000)))
 
 class Measurement(MeasurementUpload, table=True):
