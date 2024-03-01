@@ -13,7 +13,7 @@ class MeasurementUpload(SQLModel):
     signal_strength: float
     mcc: int
 
-    misc: str = Field(sa_column=Column(UnicodeText()))
+    misc: str = Field(sa_column=Column(UnicodeText(32000000)))
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
