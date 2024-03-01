@@ -1,7 +1,6 @@
 from datetime import datetime
-from sqlalchemy import Column, Text
+from sqlalchemy import Column, UnicodeText
 from sqlmodel import Field, SQLModel
-from sqlalchemy.dialects.mysql import LONGTEXT
 
 
 class MeasurementUpload(SQLModel):
@@ -15,7 +14,7 @@ class MeasurementUpload(SQLModel):
     signal_strength: float
     mcc: int
 
-    misc: str = Column(LONGTEXT),
+    misc: str = Column(UnicodeText()),
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
