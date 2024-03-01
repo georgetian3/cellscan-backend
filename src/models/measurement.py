@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, String
+from sqlalchemy import Column, Text
 from sqlmodel import Field, SQLModel
 
 
@@ -13,7 +13,7 @@ class MeasurementUpload(SQLModel):
     cell_id: int
     signal_strength: float
 
-    misc: str = Column(String(16000000)),
+    misc: str = Column(Text(1600000000)),
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
