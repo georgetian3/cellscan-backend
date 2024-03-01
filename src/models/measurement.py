@@ -1,4 +1,5 @@
 from datetime import datetime
+from sqlalchemy import Column, String
 from sqlmodel import Field, SQLModel
 
 
@@ -12,7 +13,7 @@ class MeasurementUpload(SQLModel):
     cell_id: int
     signal_strength: float
 
-    misc: str
+    misc: str = Column(String(16000000)),
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
