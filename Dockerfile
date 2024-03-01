@@ -8,9 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD uvicorn \
-    --app-dir src main:api \
-    # --workers 4 \
-    # --worker-class uvicorn.workers.UvicornWorker \
-    # --bind 0.0.0.0:8000
-    --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips='*'
+CMD uvicorn --app-dir src main:api --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips='*'

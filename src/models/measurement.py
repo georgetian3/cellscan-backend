@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Column, UnicodeText
 from sqlmodel import Field, SQLModel
-
+from sqlmodel 
 
 class MeasurementUpload(SQLModel):
     time_measured: datetime
@@ -14,7 +14,7 @@ class MeasurementUpload(SQLModel):
     signal_strength: float
     mcc: int
 
-    misc: str = Column(UnicodeText()),
+    misc: str = Field(sa_column=Column(UnicodeText()))
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
