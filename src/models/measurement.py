@@ -4,15 +4,11 @@ from sqlmodel import Field, SQLModel
 
 class MeasurementUpload(SQLModel):
     time_measured: datetime
-
     longitude: float
     latitude: float
     altitude: float
-
-    cell_id: int
-    signal_strength: float
-    mcc: int
     # large number required to create LONGTEXT in MySQL
+    cell_info: str = Field(sa_column=Column(UnicodeText(32000000)))
     misc: str = Field(sa_column=Column(UnicodeText(32000000)))
 
 class Measurement(MeasurementUpload, table=True):
