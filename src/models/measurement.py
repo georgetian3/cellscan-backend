@@ -9,7 +9,6 @@ class MeasurementUpload(SQLModel):
     altitude: float
     # large number required to create LONGTEXT in MySQL
     cell_info: str = Field(sa_column=Column(UnicodeText(32000000)))
-    misc: str = Field(sa_column=Column(UnicodeText(32000000)))
 
 class Measurement(MeasurementUpload, table=True):
     __tablename__ = 'measurement'
