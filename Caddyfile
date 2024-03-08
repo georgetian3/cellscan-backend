@@ -10,6 +10,12 @@ cellscan.georgetian.com {
         }
     }
 
-    redir /* https://github.com/georgetian3/cellscan-app temporary
+    handle / {
+        redir https://github.com/georgetian3/cellscan-app temporary
+    }
+
+    handle {
+        respond 404
+    }
 
 }
