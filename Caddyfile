@@ -10,6 +10,6 @@ cellscan.georgetian.com {
         }
     }
 
-    redir / https://github.com/georgetian3/cellscan-app temporary
-    
+    redir /* https://github.com/georgetian3/cellscan-app temporary
+
 }
