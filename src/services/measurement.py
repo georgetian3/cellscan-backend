@@ -12,6 +12,15 @@ class MeasurementService(BaseService):
     async def get_measurements(self) -> List[Measurement]:
         async with self.database.async_session() as session:
             return await session.scalars(sqlalchemy.select(Measurement))
+        
+    async def get_last_measurement(self) -> Measurement | None:
+        async with self.database.async_session() as session:
+            return await session.scalar(
+                sqlalchemy
+                    .select(Measurement)
+                    .order_by(sqlalchemy.desc(Measurement.time_measured))
+                    .limit(1)
+            )
 
     async def upload_measurements(self, measurements: List[MeasurementUpload], ip: str) -> None:
         time_uploaded = datetime.now().astimezone(UTC)

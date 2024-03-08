@@ -14,6 +14,12 @@ class MeasurementApi(BaseRouter):
         ))
         async def get_measurements():
             return await self.services.measurement.get_measurements()
+        
+        @self.get('/measurements/last', **create_documentation(
+            JDR(200, 'Last measurement', Measurement | None)
+        ))
+        async def get_last_measurement():
+            return await self.services.measurement.get_last_measurement()
 
         @self.post('/measurements', **create_documentation(JDR204))
         async def upload_measurements(measurements: List[MeasurementUpload], request: Request):
