@@ -14,10 +14,6 @@ class Api(FastAPI):
             root_path='/api/v1',
         )
         self.include_router(MeasurementApi(*args, **kwargs))
-
-        @self.get('/')
-        async def docs():
-            return RedirectResponse('/docs')
         
     def get_openapi(self):
         with open('openapi.json', 'w') as f:

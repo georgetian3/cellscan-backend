@@ -1,4 +1,5 @@
 cellscan.georgetian.com {
+
     handle_path /api/v1/* {
         reverse_proxy backend:8000 {
             header_up Host {host}
@@ -8,4 +9,6 @@ cellscan.georgetian.com {
             header_up X-Forwarded-Proto {scheme}
         }
     }
+
+    redir / https://github.com/georgetian3/cellscan-app temporary
 }
