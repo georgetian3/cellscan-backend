@@ -21,4 +21,8 @@ class ClientService(BaseService):
                 async with session.get(data['assets'][0]['browser_download_url']) as response:
                     with open(latest_apk_name, 'wb') as f:
                         f.write(await response.read())
-            return FileResponse(latest_apk_name)            
+            return FileResponse(
+                latest_apk_name,
+                filename=latest_apk_name,
+                media_type='application/vnd.android.package-archive'
+            )            
