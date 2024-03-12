@@ -10,21 +10,12 @@ class ClientService(BaseService):
 
     async def get_latest_apk(self) -> FileResponse | None:
         async with aiohttp.ClientSession() as session:
-            # get latest release info
-            async with session.get('https://api.github.com/repos/georgetian3/cellscan-app/releases/latest') as response:
-                data = json.loads(await response.text())
-            print(data)
+            # NOTE: need to manually place APK in /src/ folder, or run `download-apk.sh`
             try:
-                latest_apk_name = data['assets'][0]['name']
+                latest_apk_name = list(pathlib.Path('.').glob('*.apk'))[0]
             except:
-                print('bad json')
                 return
-            # download latest release
-            if not pathlib.Path(latest_apk_name).is_file():
-                async with session.get(data['assets'][0]['browser_download_url']) as response:
-                    with open(latest_apk_name, 'wb') as f:
-                        f.write(await response.read())
-            # return APK file
+
             return FileResponse(
                 latest_apk_name,
                 filename=latest_apk_name,
