@@ -6,12 +6,12 @@ from services.base_service import BaseService
 class ClientService(BaseService):
 
     async def get_latest_apk(self) -> FileResponse | None:
-        # NOTE: need to manually place APK in /src/ folder, or run `download-apk.sh`
+        # NOTE: need to manually download APK into folder, or run `download-apk.sh`
+        print('start')
         try:
-            latest_apk_name = list(pathlib.Path('.').glob('*.apk'))[0]
+            latest_apk_name = str(list(pathlib.Path('.').glob('*.apk'))[0])
         except:
             return
-
         return FileResponse(
             latest_apk_name,
             filename=latest_apk_name,

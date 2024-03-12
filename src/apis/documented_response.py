@@ -30,7 +30,7 @@ JDR = JSONDocumentedResponse
 JDR204 = JDR(status.HTTP_204_NO_CONTENT, 'Success')
 JDR400 = JDR(status.HTTP_400_BAD_REQUEST, 'Failed')
 JDR403 = JDR(status.HTTP_403_FORBIDDEN, 'You do not have permission to perform this action.')
-JDR404 = JDR(status.HTTP_404_NOT_FOUND,'Resource not found.')
+JDR404 = JDR(status.HTTP_404_NOT_FOUND, 'Resource not found.')
 
 def create_documentation(*args: JDR):
     responses = list(args)
