@@ -1,6 +1,6 @@
 from fastapi.responses import FileResponse
 from apis.base import BaseRouter
-from documented_response import JDR404
+from apis.documented_response import JDR404
 
 class ClientAPI(BaseRouter):
     """ Client API """
