@@ -1,14 +1,11 @@
-from models.client import Client
+from fastapi.responses import FileResponse
 from apis.base import BaseRouter
-from apis.documented_response import create_documentation, JDR
 
 class ClientAPI(BaseRouter):
     """ Client API """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        @self.get('/client', **create_documentation(
-            JDR(200, 'Get client info', Client)
-        ))
-        async def get_client():
-            return await self.services.client.get_client()
+        @self.get('/apk/latest', response_class=FileResponse, status_code=200, description='Download latest APK')
+        async def get_latest_apk():
+            return await self.services.client.get_latest_apk()
