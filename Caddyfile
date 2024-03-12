@@ -18,4 +18,8 @@ cellscan.georgetian.com {
         respond 404
     }
 
+    handle /downloads/apk/latest {
+        reverse_proxy https://github.com/georgetian3/cellscan-app/releases/latest
+    }
+
 }

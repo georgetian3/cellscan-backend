@@ -5,7 +5,7 @@ from apis.documented_response import create_documentation, JDR, JDR204
 from fastapi import Request
 
 class MeasurementApi(BaseRouter):
-    """ Location API """
+    """ Measurement API """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

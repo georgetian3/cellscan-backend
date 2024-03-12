@@ -1,3 +1,4 @@
+aiohttp[speedups]
 aiomysql
 aiosqlite
 cryptography
