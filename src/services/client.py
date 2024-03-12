@@ -7,7 +7,6 @@ class ClientService(BaseService):
 
     async def get_latest_apk(self) -> FileResponse | None:
         # NOTE: need to manually download APK into folder, or run `download-apk.sh`
-        print('start')
         try:
             latest_apk_name = str(list(pathlib.Path('.').glob('*.apk'))[0])
         except:
