@@ -27,9 +27,5 @@ class MeasurementService(BaseService):
         async with self.database.async_session() as session:
             for measurement in measurements:
                 # insert into db
-                print('before')
-                print(measurement)
-                print('after')
-                print(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded, ip=ip))
                 session.add(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded, ip=ip))
             await session.commit()
