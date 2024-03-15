@@ -26,8 +26,10 @@ class MeasurementService(BaseService):
         time_uploaded = datetime.now().astimezone(UTC)
         async with self.database.async_session() as session:
             for measurement in measurements:
-                # sanitize
-                # TODO
                 # insert into db
+                print('before')
+                print(measurement)
+                print('after')
+                print(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded, ip=ip))
                 session.add(Measurement(**measurement.model_dump(), time_uploaded=time_uploaded, ip=ip))
             await session.commit()
