@@ -9,11 +9,11 @@ class MeasurementApi(BaseRouter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        @self.get('/measurements', **create_documentation(
-            JDR(200, 'All measurements', List[Measurement])
-        ))
-        async def get_measurements():
-            return await self.services.measurement.get_measurements()
+        # @self.get('/measurements', **create_documentation(
+        #     JDR(200, 'All measurements', List[Measurement])
+        # ))
+        # async def get_measurements():
+        #     return await self.services.measurement.get_measurements()
         
         @self.get('/measurements/last', **create_documentation(
             JDR(200, 'Last measurement', Measurement | None)
